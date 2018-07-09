@@ -22,7 +22,7 @@ from setuptools import find_packages, setup
 
 # Do not edit these constants. They will be updated automatically
 # by scripts/update-client.sh.
-CLIENT_VERSION = "0.0.1"
+CLIENT_VERSION = "0.0.2"
 PACKAGE_NAME = "openshiftx"
 DEVELOPMENT_STATUS = "3 - Alpha"
 
@@ -47,6 +47,9 @@ setup(
     install_requires=extract_requirements('requirements.txt'),
     packages=find_packages(include='openshiftx'),
     include_package_data=True,
+    data_files=[
+        ('requirements.txt', ['requirements.txt']),
+    ],
     long_description='Python Sdk for OpenShift http://openshift.redhat.com/',
     classifiers=[
         "Development Status :: %s" % DEVELOPMENT_STATUS,
