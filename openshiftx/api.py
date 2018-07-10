@@ -14,7 +14,7 @@ import re
 import time
 
 from config import Config
-from token_cache import token_cache
+from .token_cache import token_cache
 import json
 import urllib3
 urllib3.disable_warnings()
