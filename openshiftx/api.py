@@ -37,7 +37,7 @@ class Api(object):
                 Config.OPENSHIFT_URL + '/oauth/authorize?response_type=token&client_id=openshift-challenging-client',
                 headers=header, verify=False, allow_redirects=False)
             token_data = re.search(r'#access_token=([^&]*)&expires_in=([^&]*)&' ,result.headers['Location']).groups()
-            token_cache.set(token_data[0], int(time.time()) + int(token_data[1]))
+            token_cache.set(token_data[0], int(time.time()) + int(token_data[1]) - 300)
             token = token_data[0]
         return token
 

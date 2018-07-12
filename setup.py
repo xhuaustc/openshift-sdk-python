@@ -22,7 +22,7 @@ from setuptools import find_packages, setup
 
 # Do not edit these constants. They will be updated automatically
 # by scripts/update-client.sh.
-CLIENT_VERSION = "0.0.0.3"
+CLIENT_VERSION = "0.0.0.4"
 PACKAGE_NAME = "openshiftx"
 DEVELOPMENT_STATUS = "3 - Alpha"
 
@@ -60,8 +60,6 @@ setup(
         "Programming Language :: Python",
         "Programming Language :: Python :: 2",
         "Programming Language :: Python :: 2.7",
-        "Programming Language :: Python :: 3",
-        "Programming Language :: Python :: 3.5",
     ],
 )
 
