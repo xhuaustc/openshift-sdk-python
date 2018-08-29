@@ -30,3 +30,7 @@ class Pod(K8s_Api):
     def get_ready_pods_by_selector(cls, project, selector):
         pods = cls.get_pod_by_selector(project=project, selector=selector)
         return [item for item in pods['items'] if  len(item['status']['conditions']) == 3 and item['status']['conditions'][1]['status'] == 'True']
+
+    @classmethod
+    def del_pod_by_id(cls, project, pod_id):
+        return cls.delete('namespaces/%s/pods/%s' % (project, pod_id), data={'propagationPolicy': 'Background'})

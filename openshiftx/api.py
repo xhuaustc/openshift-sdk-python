@@ -45,18 +45,22 @@ class Api(object):
     def request(cls, method='get', url='', params=None, data=None):
         header = {"Authorization": "Bearer %s" % cls.get_token()}
         url = '%s/%s/%s' % (Config.OPENSHIFT_URL, cls.api_version, url)
-        result = requests.request(method, url, headers=header, verify=False, params=params, data=data)
+        result = requests.request(method, url, headers=header, verify=False, params=params, json=data)
         return json.loads(result.content)
 
 
 
     @classmethod
-    def get(cls, url='', params=None):
-        return cls.request('get', url, params)
+    def get(cls, url='', params=None, data=None):
+        return cls.request('get', url, params, data)
 
     @classmethod
-    def post(cls, url='', params=None):
-        return cls.request('post', url, params)
+    def post(cls, url='', params=None, data=None):
+        return cls.request('post', url, params, data)
+
+    @classmethod
+    def delete(cls, url='', params=None, data=None):
+        return cls.request('delete', url, params, data)
 
 class K8s_Api(Api):
     api_version = 'api/v1'
