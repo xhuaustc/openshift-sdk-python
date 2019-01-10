@@ -14,9 +14,10 @@ class TokenCache(object):
     def __init__(self, cache_file):
         self.cache_file = cache_file
         self.token = None
+        self.token_expire = 0
 
     def get(self):
-        if not self.token:
+        if not self.token or int(time.time()) > int(self.token_expire):
             try:
                 with open(self.cache_file, 'r') as f:
                     data = f.readline()
@@ -24,6 +25,7 @@ class TokenCache(object):
                 return None
             data = eval(data)
             expire_time = data['expire']
+            self.token_expire = int(expire_time)
             if int(time.time()) > int(expire_time):
                 self.data = None
                 return None
